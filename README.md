@@ -21,47 +21,47 @@ As the name suggests this package helps people cluster data easily. As of now it
   * Keep in mind that there is a high posiblity of documents appearing in multiple buckets.
 
 ### Usage: 
+``` python
+''' CLUSTERING 
 
-    ''' CLUSTERING 
-    
-        DISTANCE METRIC = LEVENSTEIN'S
-        ALGORITHM = DBSCAN '''
-    
-    from dataCleansing import cleanseData
-    from blocking import blockPOS
-    from clustering import dbscan
-    
-    filePath = '~testFile.txt' 
-    
-    ''' Clean the data '''
-    
-    obj1 = cleanseData.dataCleansing(filePath)
-    obj1.cleanse(boolFDist=True,freqThreshold=100,removePunct=True,removeDigits=True)
-    
-    ''' Block the data into similar chunks '''
-    
-    obj2 = blockPOS.blocking(filePath)
-    
-    ''' build a custom stop list '''
-    
-    obj2.buildStopList(boolFDist=True)
-    
-    ''' Start the POS Tagger '''
-    
-    obj2.posTag()
-    
-    ''' Start the Blocker '''
-    
-    obj2.block()
-    
-    ''' Apply dbscan on blocks '''
-    obj3 = dbscan.dbScanAlgo(filePath,epsilon=0.17,distanceMetric='levenstein')
-    obj3.start(blocking=True)
+    DISTANCE METRIC = LEVENSTEIN'S
+    ALGORITHM = DBSCAN  '''
 
+from dataCleansing import cleanseData
+from blocking import blockPOS
+from clustering import dbscan
+
+filePath = '~testFile.txt' 
+
+''' Clean the data '''
+
+obj1 = cleanseData.dataCleansing(filePath)
+obj1.cleanse(boolFDist=True,freqThreshold=100,removePunct=True,removeDigits=True)
+
+''' Block the data into similar chunks '''
+
+obj2 = blockPOS.blocking(filePath)
+
+''' build a custom stop list '''
+
+obj2.buildStopList(boolFDist=True)
+
+''' Start the POS Tagger '''
+
+obj2.posTag()
+
+''' Start the Blocker '''
+
+obj2.block()
+
+''' Apply dbscan on blocks '''
+obj3 = dbscan.dbScanAlgo(filePath,epsilon=0.17,distanceMetric='levenstein')
+obj3.start(blocking=True)
+```
 ### Example
 
 Sample TestFile :
-
+```
 active network limited
 active network
 action for boston community development abcd in
@@ -75,17 +75,23 @@ bay valley foods
 security national automotive acceptance
 security national automotive acceptance corporation
 security national automotive acceptance snaac
-
+```
 Output :
-
+```
 Clustered:  'active network limited\n', 'active network\n'
 Clustered: action for boston community development abcd in\n', 'action for boston community development abcd\n', 'action for boston community development\n', 'action for boston community development inc\n'
 Clustered:  'bay chevrolet\n', 'bay chevrolet corp\n'
 Clustered:  'bay valley foods llc\n', 'bay valley foods\n'
 Clustered:  'security national automotive acceptance\n', 'security national automotive acceptance corporation\n', 'security national automotive acceptance snaac\n'
 Clustered:  'bae systems\n', 'bae systems inc\n'
-
+```
 ### Stats
 
 Tested on 100 K records.. 
 Time Taken : 5min 26Sec
+
+### To-do 
+
+1. Add more algorithms and distance metrics 
+2. Performance enhancements
+3. Reduce dependancies on file systems 

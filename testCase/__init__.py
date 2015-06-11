@@ -8,7 +8,7 @@ from dataCleansing import cleanseData
 from blocking import blockPOS
 from clustering import dbscan
 
-filePath = 'C:/Users/sid.reddy/workspace/easyClustering/testFile.txt' 
+filePath = '~testFile.txt' 
 
 ''' Clean the data '''
 

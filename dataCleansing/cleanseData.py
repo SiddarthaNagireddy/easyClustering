@@ -15,7 +15,7 @@ class dataCleansing():
     def __init__(self,filePath):
         self.table = string.maketrans("","")
         self.freqDist = nltk.FreqDist()
-        self.stop = stopwords.words('english')
+        self.stop = set(stopwords.words('english'))
         self.filePath = filePath
     
     ''' Return file name '''
@@ -40,7 +40,7 @@ class dataCleansing():
                 count += 1
                 if count % 1000 == 0:
                     print('Processed %d records'%count)
-                normalisedName = companyName.lower().strip()
+                normalisedName = companyName.lower().strip(',')
                 
                 ''' Ignore Spaces '''
                 if len(normalisedName) == 0:

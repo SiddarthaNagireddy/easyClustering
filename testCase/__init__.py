@@ -8,12 +8,12 @@ from dataCleansing import cleanseData
 from blocking import blockPOS
 from clustering import dbscan
 
-filePath = '~testFile.txt' 
+filePath = 'C:/Users/sid.reddy/Downloads/Output_TLO 1.0 Company List Merged.txt' 
 
 ''' Clean the data '''
 
 obj1 = cleanseData.dataCleansing(filePath)
-obj1.cleanse(boolFDist=True,freqThreshold=100,removePunct=True,removeDigits=True)
+obj1.cleanse(boolFDist=False,freqThreshold=100,removePunct=True,removeDigits=True)
 
 ''' Block the data into similar chunks '''
 
